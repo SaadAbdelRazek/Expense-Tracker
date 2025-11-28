@@ -11,7 +11,7 @@
   </p>
 
   <p>
-    <a href="#">View Live Demo</a> • 
+    <a href="https://saadabdelrazek.github.io/Expense-Tracker/">View Live Demo</a> • 
     <a href="#-tech-stack">Tech Stack</a> 
   </p>
   
