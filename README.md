@@ -8,8 +8,6 @@
 
   <p>
     <img src="https://img.shields.io/badge/Expense-Tracker-blue?style=for-the-badge&logo=appveyor" alt="Expense Tracker" />
-    <img src="https://img.shields.io/badge/Version-2.0-green?style=for-the-badge" alt="Version 2.0" />
-    <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License" />
   </p>
 
   <p>
@@ -53,14 +51,14 @@
 ---
 
 ## 🛠️ Tech Stack
-
+```text
 | Technology | Usage |
 |Data Persistence| **LocalStorage** |
 | Styling | **Bootstrap 5** + Custom CSS (Glassmorphism) |
 | Scripting | **Vanilla JavaScript (ES6+)** |
 | Charts | **Chart.js** |
 | Icons | **Font Awesome** |
-
+```
 ---
 
 ## 🚀 Quick Start
