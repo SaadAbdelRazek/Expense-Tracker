@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker with Analytics</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="glass-card text-center">
+            <h1 class="display-5 fw-bold">Expense Tracker</h1>
+            <p class="lead">Track your expenses with analytics and filtering</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Section -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="glass-card">
+            <h2><i class="fas fa-plus-circle me-2"></i>Add New Expense</h2>
+            <form id="expenseForm">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label for="expenseName" class="form-label"
+                    >Expense Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="expenseName"
+                    placeholder="Enter expense name"
+                    required
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label for="expenseAmount" class="form-label"
+                    >Amount ($)</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="expenseAmount"
+                    placeholder="0.00"
+                    min="0.01"
+                    step="0.01"
+                    required
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label for="expenseCategory" class="form-label"
+                    >Category</label
+                  >
+                  <select class="form-select" id="expenseCategory" required>
+                    <option value="" disabled selected>Select category</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Bills">Bills</option>
+                  </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                  <button
+                    type="submit"
+                    class="btn btn-primary w-100"
+                    id="submitBtn"
+                  >
+                    <i class="fas fa-plus me-1"></i> Add Expense
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary & Analytics Section -->
+      <div class="row mb-4">
+        <!-- Summary Card -->
+        <div class="col-md-4">
+          <div class="glass-card summary-card">
+            <h2><i class="fas fa-chart-pie me-2"></i>Total Expenses</h2>
+            <div class="total-amount">$<span id="totalAmount">0.00</span></div>
+            <p class="mb-0">Total of all your expenses</p>
+          </div>
+        </div>
+
+        <!-- Analytics Card -->
+        <div class="col-md-8">
+          <div class="glass-card analytics-card">
+            <h2><i class="fas fa-chart-bar me-2"></i>Spending Analytics</h2>
+            <div class="chart-container">
+              <canvas id="expenseChart"></canvas>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-label">Highest Category</div>
+                <div class="stat-value" id="highestCategory">-</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Average Expense</div>
+                <div class="stat-value">
+                  $<span id="averageExpense">0.00</span>
+                </div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Expenses Count</div>
+                <div class="stat-value" id="expensesCount">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Section -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="glass-card">
+            <h2><i class="fas fa-filter me-2"></i>Filter Expenses</h2>
+            <div class="filter-section">
+              <button class="btn btn-filter active" data-category="all">
+                <i class="fas fa-layer-group me-1"></i> All Expenses
+              </button>
+              <button class="btn btn-filter" data-category="Food">
+                <i class="fas fa-utensils me-1"></i> Food
+              </button>
+              <button class="btn btn-filter" data-category="Transport">
+                <i class="fas fa-bus me-1"></i> Transport
+              </button>
+              <button class="btn btn-filter" data-category="Entertainment">
+                <i class="fas fa-gamepad me-1"></i> Entertainment
+              </button>
+              <button class="btn btn-filter" data-category="Bills">
+                <i class="fas fa-file-invoice me-1"></i> Bills
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Output Section -->
+      <div class="row">
+        <div class="col-12">
+          <div class="glass-card">
+            <h2><i class="fas fa-list me-2"></i>Expense History</h2>
+            <div class="table-container">
+              <table class="table table-hover" id="expenseTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="expenseTableBody">
+                  <!-- Expenses will be dynamically added here -->
+                </tbody>
+              </table>
+            </div>
+            <div id="emptyState" class="empty-state">
+              <i class="fas fa-receipt"></i>
+              <h3>No expenses yet</h3>
+              <p>Add your first expense using the form above</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
