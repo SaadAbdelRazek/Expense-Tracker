@@ -15,7 +15,7 @@
     <a href="#-tech-stack">Tech Stack</a> 
   </p>
   
-  <img src="/assets/screenshot.png" alt="Project Screenshot" width="100%" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+  <img src="/assets/screenshot.jpg" alt="Project Screenshot" width="100%" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
 
 </div>
 
